@@ -101,3 +101,9 @@ Remove built image with
 ```
 buildah rmi localhost/postgresql16-0.0.1
 ```
+
+Cleanup postgresql directory in dataset with
+
+```
+rm -rf /mnt/data/postgres/data16/
+```
