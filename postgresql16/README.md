@@ -18,22 +18,12 @@ ipcns = "private"
 
 Caveat: shared memory is not actually working yet!!
 
-### Setup source container with official FreeBSD OCI image
-
-Use podman to load the official FreeBSD OCI image as follows:
-
-```
-podman pull docker.io/freebsd/freebsd-runtime:14.2
-```
-
-You only need to do this once, it doesn't need to be repeated for every container build. 
-
 ### Build
 
 Clone the repo, build the base image, then build the postgresql image as follows:
 
 ```
-git clone <repo link>
+git clone https://github.com/bretton/temporary-micropod
 cd temporary-micropod/postgresql16
 buildah bud -t postgresql16-0.0.1 .
 ```

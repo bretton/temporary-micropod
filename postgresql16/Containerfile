@@ -1,4 +1,4 @@
-FROM localhost/freebsd14-runtime:14.2
+FROM docker.io/freebsd/freebsd-runtime:14.2
 MAINTAINER Bretton Vine <bv@honeyguide.eu>
 
 # Set default environment variables
