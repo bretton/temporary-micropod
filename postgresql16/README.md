@@ -10,13 +10,28 @@ TBA. None set currently.
 
 ### Prerequisites
 
-Shared memory must be enabled in `/usr/local/etc/containers/containers.conf` and podman_service restarted.
+A less than optimal approach to enabling shared memory for postgresql in jails is to set
+
+```
+sysctl security.jail.sysvipc_allowed=1
+```
+
+And then shared memory must be enabled in `/usr/local/etc/containers/containers.conf` and podman_service restarted.
 
 ```
 ipcns = "private"
 ```
 
 Caveat: shared memory is not actually working yet!!
+
+More recent input is to configure shared memory in the `jail.conf` file for the jail, to include:
+```
+sysvshm = new;
+sysvsem = new;
+sysvmsg = new;
+```
+
+But this doesn't seem applicable for OCI jails as no obvious `jail.conf` file.
 
 ### Build
 
