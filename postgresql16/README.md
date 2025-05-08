@@ -81,3 +81,23 @@ Could not start PostgreSQL, /var/db/postgres/data16/PG_VERSION does not exist
 ### Usage
 
 Steps to be added for creating a user with database.
+
+### Cleanup
+
+Stop containers with
+
+```
+podman stop --all
+```
+
+Remove containers with
+
+```
+podman rm --all
+```
+
+Remove built image with
+
+```
+buildah rmi localhost/postgresql16-0.0.1
+```
