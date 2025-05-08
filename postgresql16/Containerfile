@@ -1,0 +1,44 @@
+FROM localhost/freebsd14-runtime:14.2
+MAINTAINER Bretton Vine <bv@honeyguide.eu>
+
+# Set default environment variables
+#ENV NETWORK=10.0.0.0/8
+ENV PGDATA="/var/db/postgres/data16"
+
+# setup pkg source
+RUN mkdir -p /usr/local/etc/pkg/repos
+ADD FreeBSD.conf /usr/local/etc/pkg/repos/FreeBSD.conf
+
+# bootstrap pkg
+RUN ASSUME_ALWAYS_YES=yes pkg bootstrap -f
+RUN ASSUME_ALWAYS_YES=yes pkg update -f
+
+# install openssl and ca_root_nss
+RUN ASSUME_ALWAYS_YES=yes pkg install -y openssl
+RUN ASSUME_ALWAYS_YES=yes pkg install -y ca_root_nss
+
+# install doas because su is not installed, nor is chown
+# installing sudo gives the following error, so not good either
+#  sudo: error in /usr/local/etc/sudo.conf, line 0 while loading plugin "sudoers_policy"
+#  sudo: unable to load /usr/local/libexec/sudo/sudoers.so: Shared object "libbsm.so.3" not found, required by "sudoers.so"
+#  sudo: fatal error, unable to load plugins
+#
+RUN ASSUME_ALWAYS_YES=yes pkg install -y doas
+
+# Install postgresql-16 client, server, contrib
+RUN ASSUME_ALWAYS_YES=yes pkg install -y postgresql16-client
+RUN ASSUME_ALWAYS_YES=yes pkg install -y postgresql16-server
+RUN ASSUME_ALWAYS_YES=yes pkg install -y postgresql16-contrib
+RUN ASSUME_ALWAYS_YES=yes pkg clean -ay
+
+# add postgresql custom files
+RUN mkdir -p /usr/local/etc/postgresql
+ADD pg_hba.conf /usr/local/etc/postgresql/pg_hba.conf
+ADD postgresql.conf /usr/local/etc/postgresql/postgresql.conf
+
+# configure doas.conf
+ADD doas.conf /usr/local/etc/doas.conf
+
+# Set entrypoint
+ADD entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT "/usr/local/bin/entrypoint.sh"
