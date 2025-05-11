@@ -73,7 +73,7 @@ Run the image with podman as follows:
 podman run -dt \
   --ip=10.88.0.[??] \
   --volume "/mnt/data/postgres:/var/db/postgres:rw" \
-  --mount type=tmpfs,tmpfs-size=1G,destination=/dev/shm \
+  --shm-size="1g" \
   -h postgresql16 \
   postgresql16-0.0.1:latest
 ```
