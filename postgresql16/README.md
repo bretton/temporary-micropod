@@ -10,19 +10,21 @@ TBA. None set currently.
 
 ### Prerequisites
 
-A less than optimal approach to enabling shared memory for postgresql in jails is to set
-
-```
-sysctl security.jail.sysvipc_allowed=1
-```
-
-And then shared memory must be enabled in `/usr/local/etc/containers/containers.conf` and podman_service restarted.
+Shared memory must be enabled in `/usr/local/etc/containers/containers.conf` and podman_service restarted.
 
 ```
 ipcns = "private"
 ```
 
 Caveat: shared memory is not actually working yet!!
+
+#### Problems
+
+A less than optimal approach to enabling shared memory for postgresql in jails is to set
+
+```
+sysctl security.jail.sysvipc_allowed=1
+```
 
 More recent input is to configure shared memory in the `jail.conf` file for the jail, to include:
 ```
@@ -31,7 +33,19 @@ sysvsem = new;
 sysvmsg = new;
 ```
 
-But this doesn't seem applicable for OCI jails as no obvious `jail.conf` file.
+But this doesn't seem applicable for OCI jails, because `jail.conf` file.
+
+Another solution is manually mounting in tmpfs during the podman run step, as covered [here](https://docs.podman.io/en/latest/markdown/podman-run.1.html), but doesn't work either. 
+
+```
+--mount type=tmpfs,tmpfs-size=1G,destination=/dev/shm
+```
+
+Nor does adding a volume as follows:
+
+```
+--volume "/dev/shm:/dev/shm"
+```
 
 ### Build
 
@@ -59,7 +73,7 @@ Run the image with podman as follows:
 podman run -dt \
   --ip=10.88.0.[??] \
   --volume "/mnt/data/postgres:/var/db/postgres:rw" \
-  --shm-size="1g" \
+  --mount type=tmpfs,tmpfs-size=1G,destination=/dev/shm \
   -h postgresql16 \
   postgresql16-0.0.1:latest
 ```
