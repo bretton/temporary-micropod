@@ -33,7 +33,7 @@ sysvsem = new;
 sysvmsg = new;
 ```
 
-But this doesn't seem applicable for OCI jails, because `jail.conf` file.
+But this doesn't seem applicable for OCI jails, because no applicable `jail.conf` file.
 
 Another solution is manually mounting in tmpfs during the podman run step, as covered [here](https://docs.podman.io/en/latest/markdown/podman-run.1.html), but doesn't work either. 
 
