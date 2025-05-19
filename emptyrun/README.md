@@ -46,9 +46,14 @@ To see logs, first `podman ps -a` and find the ID, then `podman logs <ID>`.
 
 This container is an empty container, used to get a list of commands included with the base OCI image.
 
-To access the container shell you would run
+To access the container shell you would find the image container-id or name with
 ```
-podman exec -ti emptyrun /bin/sh
+podman ps -a
+```
+
+And then run the shell with
+```
+podman exec -ti <container-id> /bin/sh
 ```
 
 And then perform commands such as
