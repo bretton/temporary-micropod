@@ -2,4 +2,5 @@
 
 # This script is used to run the emptyrun container.
 
-exec "$@"
+# keep the container running
+tail -f /dev/null

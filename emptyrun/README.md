@@ -21,7 +21,7 @@ Clone the repo, build the base image, then build the emptyrun image as follows:
 ```
 git clone https://github.com/bretton/temporary-micropod
 cd temporary-micropod/emptyrun
-buildah bud -t emptyrun-0.0.1 .
+buildah bud -t emptyrun .
 ```
 
 ### ZFS Dataset for persistent data
@@ -35,7 +35,7 @@ Run the image with podman as follows:
 ```
 podman run -dt \
   -h emptyrun \
-  emptyrun-0.0.1:latest
+  emptyrun:latest
 ```
 
 ### Container logs
@@ -78,6 +78,6 @@ podman rm --all
 Remove built image with
 
 ```
-buildah rmi localhost/emptyrun-0.0.1
+buildah rmi localhost/emptyrun
 ```
 
