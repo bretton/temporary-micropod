@@ -2,3 +2,4 @@
 
 # This script is used to run the emptyrun container.
 
+exec "$@"
