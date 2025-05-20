@@ -1,0 +1,10 @@
+FROM docker.io/freebsd/freebsd-runtime:14.2
+MAINTAINER Bretton Vine <bv@honeyguide.eu>
+
+RUN cat /etc/resolv.conf
+
+RUN ping -c 10 ipv6.google.com
+
+# Set entrypoint
+ADD entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT "/usr/local/bin/entrypoint.sh"
