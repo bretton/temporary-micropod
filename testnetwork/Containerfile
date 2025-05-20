@@ -3,6 +3,8 @@ MAINTAINER Bretton Vine <bv@honeyguide.eu>
 
 RUN cat /etc/resolv.conf
 
+RUN ping -c 10 google.com
+
 RUN ping -c 10 ipv6.google.com
 
 # Set entrypoint
