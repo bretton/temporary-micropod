@@ -59,16 +59,28 @@ cd temporary-micropod/testnetworkpreferv4
 
 Then depending on network setup:
 
-#### Default Podman network
+#### Default Podman network with Buildah
 
 ```
 buildah bud -t testnetworkpreferv4 .
 ```
 
-#### Dualstack Podman network
+#### Default Podman network with Podman build
+
+```
+podman build -t testnetwork -f Containerfile .
+```
+
+#### Dualstack Podman network with Buildah
 
 ```
 buildah bud --network ip-dual-stack -t testnetworkpreferv4 .
+```
+
+#### Dualstack Podman network with Podman build
+
+```
+podman build --network ip-dual-stack -t testnetwork -f Containerfile .
 ```
 
 ### ZFS Dataset for persistent data
