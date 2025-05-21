@@ -19,7 +19,7 @@ This test uses a custom image using `base.txz` to create a base container. This 
 Setup a new image in localhost using
 
 ```
-podman import --os FreeBSD \
+podman import --os freebsd \
   --arch amd64 \
   --message 'Import FreeBSD 14.3-BETA3 base.txz' \
   https://download.freebsd.org/ftp/releases/amd64/14.3-BETA3/base.txz
