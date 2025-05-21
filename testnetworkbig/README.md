@@ -1,8 +1,8 @@
-# Testnetwork
+# Testnetworkbig
 
-This will build a podman empty container for network testing. This can be used for `ipv4`, `ipv6` and dualstack environments.
+This will build a podman empty container for network testing using alternate approaches. This can be used for `ipv4`, `ipv6` and dualstack environments.
 
-The default setup of `podman-suite` on FreeBSD 14.2 on a dualstack host, fails to handle network activity inside a container during the build step.
+The default setup of `podman-suite` on FreeBSD 14.3 on a dualstack host, fails to handle network activity inside a container during the build step.
 
 Adding a second podman network with `ipv6` enabled should fix issues with network access on a dualstack host.
 
@@ -13,6 +13,28 @@ None.
 ## Usage
 
 ### Prerequisites
+
+This test uses a custom image using `base.txz` to create a base container. This is a large file!
+
+Setup a new image in localhost using
+
+```
+podman import --os FreeBSD \
+  --arch amd64 \
+  --message 'Import FreeBSD 14.3-BETA3 base.txz' \
+  https://download.freebsd.org/ftp/releases/amd64/14.3-BETA3/base.txz
+```
+
+Get the image id with
+```
+podman image ls -a
+```
+
+Tag the image with
+```
+podman image tag <image-id> localhost/freebsd-base:14.3-beta3
+```
+
 
 #### Default Podman network
 

@@ -1,0 +1,12 @@
+FROM localhost/freebsd-base:14.3-beta3
+MAINTAINER Bretton Vine <bv@honeyguide.eu>
+
+RUN cat /etc/resolv.conf
+
+RUN ping -c 10 google.com
+
+RUN ping -c 10 ipv6.google.com
+
+# Set entrypoint
+ADD entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT "/usr/local/bin/entrypoint.sh"
