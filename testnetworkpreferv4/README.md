@@ -65,15 +65,11 @@ Then depending on network setup:
 buildah bud -t testnetworkpreferv4 .
 ```
 
-> This should fail on a dualstack host.
-
 #### Dualstack Podman network
 
 ```
 buildah bud --network ip-dual-stack -t testnetworkpreferv4 .
 ```
-
-> This should work on a dualstack host with a second podman network created
 
 ### ZFS Dataset for persistent data
 
