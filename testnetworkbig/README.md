@@ -62,7 +62,7 @@ Then depending on network setup:
 #### Default Podman network
 
 ```
-buildah bud -t testnetwork .
+buildah bud -t testnetworkbig .
 ```
 
 > This should fail on a dualstack host.
@@ -70,7 +70,7 @@ buildah bud -t testnetwork .
 #### Dualstack Podman network
 
 ```
-buildah bud --network ip-dual-stack -t testnetwork .
+buildah bud --network ip-dual-stack -t testnetworkbig .
 ```
 
 > This should work on a dualstack host with a second podman network created
@@ -88,8 +88,8 @@ Run the image with podman as follows:
 ```
 podman run -dt \
   --ip=10.88.0.10 \
-  -h testnetwork \
-  testnetwork:latest
+  -h testnetworkbig \
+  testnetworkbig:latest
 ```
 
 > Things should not get this far on a dualstack network with default podman network settings
@@ -103,8 +103,8 @@ Run the image with podman as follows. Note the change in IP to `10.89.0.0` range
 podman run -dt \
   --network=ip-dual-stack \
   --ip=10.89.0.10 \
-  -h testnetwork \
-  testnetwork:latest
+  -h testnetworkbig \
+  testnetworkbig:latest
 ```
 
 > Things should get this far on a dualstack network with a second podman network with IPv6 enabled. The image should run.
@@ -150,6 +150,6 @@ podman rm --all
 Remove built image with
 
 ```
-buildah rmi localhost/testnetwork
+buildah rmi localhost/testnetworkbig
 ```
 
