@@ -65,10 +65,22 @@ Then depending on network setup:
 buildah bud -t testnetworkpreferv4 .
 ```
 
+or with external DNS
+
+```
+buildah bud --dns=1.1.1.1 -t testnetworkpreferv4 .
+```
+
 #### Default Podman network with Podman build
 
 ```
 podman build -t testnetwork -f Containerfile .
+```
+
+or with external DNS
+
+```
+podman build --dns=1.1.1.1 -t testnetwork -f Containerfile .
 ```
 
 #### Dualstack Podman network with Buildah
@@ -77,10 +89,22 @@ podman build -t testnetwork -f Containerfile .
 buildah bud --network ip-dual-stack -t testnetworkpreferv4 .
 ```
 
+or with external DNS
+
+```
+buildah bud --network ip-dual-stack --dns=1.1.1.1 -t testnetworkpreferv4 .
+```
+
 #### Dualstack Podman network with Podman build
 
 ```
 podman build --network ip-dual-stack -t testnetwork -f Containerfile .
+```
+
+or with external DNS
+
+```
+podman build --network ip-dual-stack --dns=1.1.1.1 -t testnetwork -f Containerfile .
 ```
 
 ### ZFS Dataset for persistent data
@@ -95,7 +119,6 @@ Run the image with podman as follows:
 
 ```
 podman run -dt \
-  --ip=10.88.0.10 \
   -h testnetworkpreferv4 \
   testnetworkpreferv4:latest
 ```
@@ -105,12 +128,11 @@ podman run -dt \
 
 #### Dualstack Podman network
 
-Run the image with podman as follows. Note the change in IP to `10.89.0.0` range, set with a second podman network.
+Run the image with podman as follows. 
 
 ```
 podman run -dt \
   --network=ip-dual-stack \
-  --ip=10.89.0.10 \
   -h testnetworkpreferv4 \
   testnetworkpreferv4:latest
 ```

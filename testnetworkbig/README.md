@@ -67,6 +67,12 @@ buildah bud -t testnetworkbig .
 
 > This should fail on a dualstack host.
 
+Or with external DNS
+
+```
+buildah bud --dns=1.1.1.1 -t testnetworkbig .
+```
+
 #### Dualstack Podman network
 
 ```
@@ -74,6 +80,12 @@ buildah bud --network ip-dual-stack -t testnetworkbig .
 ```
 
 > This should work on a dualstack host with a second podman network created
+
+Or with external DNS
+
+```
+buildah bud --network ip-dual-stack --dns=1.1.1.1 -t testnetworkbig .
+```
 
 ### ZFS Dataset for persistent data
 
@@ -87,27 +99,44 @@ Run the image with podman as follows:
 
 ```
 podman run -dt \
-  --ip=10.88.0.10 \
   -h testnetworkbig \
   testnetworkbig:latest
 ```
 
 > Things should not get this far on a dualstack network with default podman network settings
 
+With external DNS
+
+```
+podman run -dt \
+  --dns=1.1.1.1 \
+  -h testnetworkbig \
+  testnetworkbig:latest
+```
+
 
 #### Dualstack Podman network
 
-Run the image with podman as follows. Note the change in IP to `10.89.0.0` range, set with a second podman network.
+Run the image with podman as follows.
 
 ```
 podman run -dt \
   --network=ip-dual-stack \
-  --ip=10.89.0.10 \
   -h testnetworkbig \
   testnetworkbig:latest
 ```
 
 > Things should get this far on a dualstack network with a second podman network with IPv6 enabled. The image should run.
+
+With external DNS
+
+```
+podman run -dt \
+  --network=ip-dual-stack \
+  --dns=1.1.1.1 \
+  -h testnetworkbig \
+  testnetworkbig:latest
+```
 
 ### Container logs
 

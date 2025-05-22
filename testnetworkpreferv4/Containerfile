@@ -7,6 +7,10 @@ RUN ping -4 -c 3 pkg.freebsd.org
 
 RUN ping6 -c 3 pkg.freebsd.org
 
+RUN host -t SRV _http._tcp.pkg.freebsd.org
+
+RUN host -t SRV _https._tcp.pkg.freebsd.org
+
 # Set entrypoint
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 ENTRYPOINT "/usr/local/bin/entrypoint.sh"
