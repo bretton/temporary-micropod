@@ -3,9 +3,19 @@ MAINTAINER Bretton Vine <bv@honeyguide.eu>
 
 RUN cat /etc/resolv.conf
 
-RUN ping -c 10 google.com
+RUN ping -4 -c 1 google.com
 
-RUN ping -c 10 ipv6.google.com
+RUN ping -c 1 ipv6.google.com
+
+RUN route get pkg.freebsd.org
+
+RUN sysctl net.inet.ip.forwarding
+
+RUN sysctl net.inet6.ip6.forwarding
+
+RUN fetch http://ipv4.download.thinkbroadband.com/5MB.zip -o ipv4.zip
+
+RUN fetch http://ipv6.download.thinkbroadband.com/5MB.zip -o ipv6.zip
 
 # Set entrypoint
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
