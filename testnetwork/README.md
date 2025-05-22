@@ -66,7 +66,8 @@ Run the image with podman as follows:
 ```
 podman run -dt \
   --ip=10.88.0.10 \
-  -h testnetwork \
+  --name=testnetwork \
+  --hostname=testnetwork \
   testnetwork:latest
 ```
 
@@ -79,9 +80,9 @@ Run the image with podman as follows. Note the change in IP to `10.89.0.0` range
 
 ```
 podman run -dt \
-  --network=ip-dual-stack \
-  --ip=10.89.0.10 \
-  -h testnetwork \
+  --network=ip-dual-stack:ip=10.89.0.10 \
+  --name=testnetwork \
+  --hostname=testnetwork \
   testnetwork:latest
 ```
 

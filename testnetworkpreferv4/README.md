@@ -35,7 +35,6 @@ Tag the image with
 podman image tag <image-id> localhost/freebsd-base:14.3-beta3
 ```
 
-
 #### Default Podman network
 
 If testing the default podman installation, do not make any changes to the podman network.
@@ -119,12 +118,12 @@ Run the image with podman as follows:
 
 ```
 podman run -dt \
-  -h testnetworkpreferv4 \
+  --name=testnetworkpreferv4 \
+  --hostname=testnetworkpreferv4 \
   testnetworkpreferv4:latest
 ```
 
 > Things should not get this far on a dualstack network with default podman network settings
-
 
 #### Dualstack Podman network
 
@@ -132,8 +131,10 @@ Run the image with podman as follows.
 
 ```
 podman run -dt \
-  --network=ip-dual-stack \
-  -h testnetworkpreferv4 \
+  --network=ip-dual-stack:ip=10.89.0.14 \
+  --dns=1.1.1.1 \
+  --name=testnetworkpreferv4 \
+  --hostname=testnetworkpreferv4 \
   testnetworkpreferv4:latest
 ```
 
@@ -161,6 +162,9 @@ And then perform commands such as
 ```
 ping -c 10 google.com
 ping6 -c 10 ipv6.google.com
+
+host pkg.freebsd.org
+pkg bootstrap -fy
 ```
 
 ### Cleanup

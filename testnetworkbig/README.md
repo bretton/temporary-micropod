@@ -99,7 +99,8 @@ Run the image with podman as follows:
 
 ```
 podman run -dt \
-  -h testnetworkbig \
+  --name=testnetworkbig \
+  --hostname=testnetworkbig \
   testnetworkbig:latest
 ```
 
@@ -110,7 +111,8 @@ With external DNS
 ```
 podman run -dt \
   --dns=1.1.1.1 \
-  -h testnetworkbig \
+  --name=testnetworkbig \
+  --hostname=testnetworkbig \
   testnetworkbig:latest
 ```
 
@@ -121,8 +123,9 @@ Run the image with podman as follows.
 
 ```
 podman run -dt \
-  --network=ip-dual-stack \
-  -h testnetworkbig \
+  --network=ip-dual-stack:ip=10.89.0.12 \
+  --name=testnetworkbig \
+  --hostname=testnetworkbig \
   testnetworkbig:latest
 ```
 
@@ -132,9 +135,10 @@ With external DNS
 
 ```
 podman run -dt \
-  --network=ip-dual-stack \
+  --network=ip-dual-stack:ip=10.89.0.12 \
   --dns=1.1.1.1 \
-  -h testnetworkbig \
+  --name=testnetworkbig \
+  --hostname=testnetworkbig \
   testnetworkbig:latest
 ```
 

@@ -74,7 +74,8 @@ podman run -dt \
   --ip=10.88.0.[??] \
   --volume "/mnt/data/postgres:/var/db/postgres:rw" \
   --shm-size="1g" \
-  -h postgresql16 \
+  --name=postgresql16 \
+  --hostname=postgresql16 \
   postgresql16-0.0.1:latest
 ```
 

@@ -34,7 +34,8 @@ Run the image with podman as follows:
 
 ```
 podman run -dt \
-  -h emptyrun \
+  --name=emptyrun \
+  --hostname=emptyrun \
   emptyrun:latest
 ```
 

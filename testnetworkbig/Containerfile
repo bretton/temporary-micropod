@@ -13,9 +13,9 @@ RUN sysctl net.inet.ip.forwarding
 
 RUN sysctl net.inet6.ip6.forwarding
 
-RUN fetch -4 http://ipv4.download.thinkbroadband.com/5MB.zip -o ipv4.zip
+RUN fetch http://ipv4.download.thinkbroadband.com/5MB.zip -o ipv4.zip
 
-RUN fetch -6 http://ipv6.download.thinkbroadband.com/5MB.zip -o ipv6.zip
+RUN fetch http://ipv6.download.thinkbroadband.com/5MB.zip -o ipv6.zip
 
 # Set entrypoint
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
