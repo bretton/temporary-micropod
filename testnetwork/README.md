@@ -14,6 +14,12 @@ None.
 
 ### Prerequisites
 
+Pull the latest development image
+
+```
+podman pull docker.io/freebsd/freebsd-runtime:14.3-beta4
+```
+
 #### Default Podman network
 
 If testing the default podman installation, do not make any changes to the podman network.
@@ -40,7 +46,7 @@ Then depending on network setup:
 #### Default Podman network
 
 ```
-buildah bud -t testnetwork .
+podman build -t testnetwork -f Containerfile
 ```
 
 > This should fail on a dualstack host.
@@ -48,7 +54,7 @@ buildah bud -t testnetwork .
 #### Dualstack Podman network
 
 ```
-buildah bud --network ip-dual-stack -t testnetwork .
+podman build --network ip-dual-stack -t testnetwork -f Containerfile
 ```
 
 > This should work on a dualstack host with a second podman network created
