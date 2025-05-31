@@ -51,8 +51,8 @@ You only need to do this once, it doesn't need to be repeated for every containe
 Clone the repo, build the base image, then build the testingnginx image as follows:
 
 ```
-git clone https://codeberg.org/Honeyguide/micropod.git
-cd micropod/testnginx
+git clone https://github.com/bretton/temporary-micropod
+cd temporary-micropod/testnginx
 ```
 
 Then depending on network setup:
