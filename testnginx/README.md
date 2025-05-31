@@ -65,13 +65,13 @@ podman build --network ip-dual-stack -t testnginx -f Containerfile
 
 #### Dualstack Podman network
 
-Run the image with podman as follows. Note the change in IP to `10.89.0.0` range, set with a second podman network, specifying local `ipv4` and `ipv6` address:
+Run the image with podman as follows. You must specify your local `ipv4` and `ipv6` addresses:
 
 ```
 podman run -dt \
   --publish=localipv4:8080:80 \
   --publish=[localipv6]:8080:80 \
-  --network=ip-dual-stack:ip=10.89.0.10 \
+  --network=ip-dual-stack \
   --name=testnginx \
   --hostname=testnginx \
   testnginx:latest
