@@ -55,51 +55,35 @@ git clone https://github.com/bretton/temporary-micropod
 cd temporary-micropod/testnginx
 ```
 
-Then depending on network setup:
-
-#### Default Podman network
-
-```
-podman build -t testnginx -f Containerfile
-```
-
-#### Dualstack Podman network
+#### Build for Dualstack Podman network
 
 ```
 podman build --network ip-dual-stack -t testnginx -f Containerfile
 ```
 
-### ZFS Dataset for persistent data
-
-Not included.
-
 ### Run
-
-#### Default Podman network
-
-Run the image with podman as follows:
-
-```
-podman run -dt \
-  --publish=8080:80 \
-  --ip=10.88.0.10 \
-  --name=testnginx \
-  --hostname=testnginx \
-  testnginx:latest
-```
 
 #### Dualstack Podman network
 
-Run the image with podman as follows. Note the change in IP to `10.89.0.0` range, set with a second podman network.
+Run the image with podman as follows. Note the change in IP to `10.89.0.0` range, set with a second podman network, specifying local `ipv4` and `ipv6` address:
 
 ```
 podman run -dt \
-  --publish=8080:80 \
+  --publish=localipv4:8080:80 \
+  --publish=[localipv6]:8080:80 \
   --network=ip-dual-stack:ip=10.89.0.10 \
   --name=testnginx \
   --hostname=testnginx \
   testnginx:latest
 ```
+
+> You should get an error such as
+>   Error: plugin type="portmap" failed (add): cni plugin portmap failed: error loading rules input:
+>   ...
+>   output: stdin:3: rule expands to no valid combination
+>   stdin:5: rule expands to no valid combination
+>   pfctl: Syntax error in config file: pf rules not loaded
+>   , err: :exit status 1:
 
 ### Container logs
 
