@@ -81,6 +81,7 @@ Run the image with podman as follows:
 
 ```
 podman run -dt \
+  --publish=8080:80 \
   --ip=10.88.0.10 \
   --name=testnginx \
   --hostname=testnginx \
