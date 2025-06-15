@@ -1,4 +1,4 @@
-FROM docker.io/freebsd/freebsd-runtime:14.3-beta4
+FROM docker.io/freebsd/freebsd-runtime:14.3
 MAINTAINER Bretton Vine <bv@honeyguide.eu>
 
 RUN cat /etc/resolv.conf

@@ -1,4 +1,4 @@
-FROM localhost/freebsd-base:14.3-beta3
+FROM localhost/freebsd-base:14.3
 MAINTAINER Bretton Vine <bv@honeyguide.eu>
 
 RUN host pkg.freebsd.org

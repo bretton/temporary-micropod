@@ -22,7 +22,7 @@ Setup a new image in localhost using
 podman import --os freebsd \
   --arch amd64 \
   --message 'Import FreeBSD 14.3-BETA3 base.txz' \
-  https://download.freebsd.org/ftp/releases/amd64/14.3-BETA3/base.txz
+  https://download.freebsd.org/ftp/releases/amd64/14.3/base.txz
 ```
 
 Get the image id with
@@ -32,7 +32,7 @@ podman image ls -a
 
 Tag the image with
 ```
-podman image tag <image-id> localhost/freebsd-base:14.3-beta3
+podman image tag <image-id> localhost/freebsd-base:14.3
 ```
 
 #### Default Podman network

@@ -41,7 +41,7 @@ nat-anchor "cni-rdr/*"
 
 Use podman to load the official FreeBSD OCI image as follows:
 ```
-podman pull docker.io/freebsd/freebsd-runtime:14.3-beta4
+podman pull docker.io/freebsd/freebsd-runtime:14.3
 ```
 
 You only need to do this once, it doesn't need to be repeated for every container build. 
