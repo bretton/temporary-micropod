@@ -17,7 +17,7 @@ None.
 Pull the latest development image
 
 ```
-podman pull docker.io/freebsd/freebsd-runtime:14.3-beta4
+podman pull docker.io/freebsd/freebsd-runtime:14.3
 ```
 
 #### Default Podman network
