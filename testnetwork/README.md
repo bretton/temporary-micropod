@@ -2,7 +2,7 @@
 
 This will build a podman empty container for network testing. This can be used for `ipv4`, `ipv6` and dualstack environments.
 
-The default setup of `podman-suite` on FreeBSD 14.2 on a dualstack host, fails to handle network activity inside a container during the build step.
+The default setup of `podman-suite` on FreeBSD on a dualstack host, fails to handle network activity inside a container during the build step.
 
 Adding a second podman network with `ipv6` enabled should fix issues with network access on a dualstack host.
 
