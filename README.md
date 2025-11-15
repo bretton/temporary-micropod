@@ -22,6 +22,14 @@ This will build a podman empty container using FreeBSD 14.3 `base.txz` and make 
 
 This will build a podman empty container using FreeBSD 14.3 `base.txz` and make a large container image with all programs, and configure to prefer `ipv4` inside image.
 
-## Testngins
+## Testnginx
 
 This will build a podman nginx container for testing port forwards on `ipv4` and `ipv6`.
+
+## composenginx
+
+This is a podman compose recipe for testing restarts with single container
+
+## composenginxminio
+
+This is a podman compose recipe for testing restarts with two containers
