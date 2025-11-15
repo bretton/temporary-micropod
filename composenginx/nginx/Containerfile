@@ -1,0 +1,29 @@
+FROM docker.io/freebsd/freebsd-runtime:14.3
+MAINTAINER Bretton Vine <bv@honeyguide.eu>
+
+# setup pkg source
+RUN mkdir -p /usr/local/etc/pkg/repos
+ADD FreeBSD.conf /usr/local/etc/pkg/repos/FreeBSD.conf
+
+# bootstrap pkg
+RUN ASSUME_ALWAYS_YES=yes pkg bootstrap -f
+RUN ASSUME_ALWAYS_YES=yes pkg update -f
+
+# install openssl and ca_root_nss
+RUN ASSUME_ALWAYS_YES=yes pkg install -y openssl
+RUN ASSUME_ALWAYS_YES=yes pkg install -y ca_root_nss
+
+# install nginx and related
+RUN ASSUME_ALWAYS_YES=yes pkg install -y curl
+RUN ASSUME_ALWAYS_YES=yes pkg install -y nginx
+RUN ASSUME_ALWAYS_YES=yes pkg clean -ay
+
+# setup nginx
+ADD nginx.conf /usr/local/etc/nginx/nginx.conf
+
+# setup default index.html
+ADD index.html /usr/local/www/nginx/index.html
+
+# setup entrypoint
+ADD entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT "/usr/local/bin/entrypoint.sh"

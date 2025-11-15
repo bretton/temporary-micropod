@@ -1,0 +1,26 @@
+FROM docker.io/freebsd/freebsd-runtime:14.3
+MAINTAINER Bretton Vine <bv@honeyguide.eu>
+
+# Set default environment variables
+ENV MINIO_USER="admin"
+ENV MINIO_PASS="l0ng-c0mpl1c4t3d-p4ssw0rd"
+
+# setup pkg source
+RUN mkdir -p /usr/local/etc/pkg/repos
+ADD FreeBSD.conf /usr/local/etc/pkg/repos/FreeBSD.conf
+
+# bootstrap pkg
+RUN ASSUME_ALWAYS_YES=yes pkg bootstrap -f
+RUN ASSUME_ALWAYS_YES=yes pkg update -f
+
+# install openssl and ca_root_nss
+RUN ASSUME_ALWAYS_YES=yes pkg install -y openssl
+RUN ASSUME_ALWAYS_YES=yes pkg install -y ca_root_nss
+
+# Install minio
+RUN ASSUME_ALWAYS_YES=yes pkg install -y minio
+RUN ASSUME_ALWAYS_YES=yes pkg clean -ay
+
+# Set entrypoint
+ADD entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT "/usr/local/bin/entrypoint.sh"
