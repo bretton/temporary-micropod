@@ -6,6 +6,10 @@ This is a temporary micropod repository used for sharing broken builds and test 
 
 This is just an empty container
 
+## Emptyrun15
+
+This is just an empty container for FreeBSD 15.0 container image
+
 ## Postgresql
 
 Please see README.md in the postgresql16 directory. This image won't work currently.
