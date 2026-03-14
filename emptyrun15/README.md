@@ -36,7 +36,7 @@ Run the image with podman as follows:
 podman run -dt \
   --name=emptyrun15 \
   --hostname=emptyrun15 \
-  emptyrun:latest
+  emptyrun15:latest
 ```
 
 ### Container logs
